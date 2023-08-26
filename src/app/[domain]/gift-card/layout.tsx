@@ -1,0 +1,14 @@
+// GC listing page doesn't need any static params
+// but we still need to define generateStaticParams function return [] array
+// otherwise, the gift-card/[id] page's generateStaticParams function will not received the domain params
+export async function generateStaticParams() {
+  return [];
+}
+export const dynamicParams = true;
+export default function GiftCardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
+}
