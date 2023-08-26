@@ -5,7 +5,7 @@ export async function generateStaticParams({
 }: {
   params: { domain: string };
 }) {
-  console.log("generateStaticParams gift card details", params);
+  console.log("gift card details generateStaticParams", params);
   const giftCards = await fetchGiftCards({
     domain: params.domain,
   });

@@ -1,14 +1,12 @@
+import "../globals.css";
+
 export async function generateStaticParams() {
   return [
     {
-      params: {
-        domain: "abcrewards.us.kaligo-staging.xyz",
-      },
+      domain: "abcrewards.us.kaligo-staging.xyz",
     },
     {
-      params: {
-        domain: "dbsrewards.us.kaligo-staging.xyz",
-      },
+      domain: "dbsrewards.us.kaligo-staging.xyz",
     },
   ];
 }
@@ -16,17 +14,12 @@ export async function generateStaticParams() {
 
 export const dynamicParams = true;
 export const revalidate = 10;
+// do nothing except render children here
+// and set up generateStaticParams for domain params
 export default function DomainLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { domain: string };
 }) {
-  return (
-    <div>
-      <div className="bg-yellow-500">domain layout: {params.domain}</div>
-      {children}
-    </div>
-  );
+  return children;
 }

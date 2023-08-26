@@ -10,7 +10,6 @@ export default async function GiftCardDetailPage({
     id: params.id,
   });
 
-  console.log("gift card render", params, params.domain, params.id);
   return (
     <div>
       GiftCardDetailPage

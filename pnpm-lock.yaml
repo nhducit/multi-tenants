@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formatjs/intl-localematcher':
+    specifier: ^0.4.0
+    version: 0.4.0
   '@types/node':
     specifier: 20.5.6
     version: 20.5.6
@@ -23,6 +26,9 @@ dependencies:
   eslint-config-next:
     specifier: 13.4.19
     version: 13.4.19(eslint@8.47.0)(typescript@5.2.2)
+  negotiator:
+    specifier: ^0.6.3
+    version: 0.6.3
   next:
     specifier: 13.4.19
     version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
@@ -41,6 +47,11 @@ dependencies:
   typescript:
     specifier: 5.2.2
     version: 5.2.2
+
+devDependencies:
+  '@types/negotiator':
+    specifier: ^0.6.1
+    version: 0.6.1
 
 packages:
 
@@ -96,6 +107,12 @@ packages:
   /@eslint/js@8.47.0:
     resolution: {integrity: sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: false
+
+  /@formatjs/intl-localematcher@0.4.0:
+    resolution: {integrity: sha512-bRTd+rKomvfdS4QDlVJ6TA/Jx1F2h/TBVO5LjvhQ7QPPHp19oPNMIum7W2CMEReq/zPxpmCeB31F9+5gl/qtvw==}
+    dependencies:
+      tslib: 2.6.2
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
@@ -273,6 +290,10 @@ packages:
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: false
+
+  /@types/negotiator@0.6.1:
+    resolution: {integrity: sha512-c4mvXFByghezQ/eVGN5HvH/jI63vm3B7FiE81BUzDAWmuiohRecCO6ddU60dfq29oKUMiQujsoB2h0JQC7JHKA==}
+    dev: true
 
   /@types/node@20.5.6:
     resolution: {integrity: sha512-Gi5wRGPbbyOTX+4Y2iULQ27oUPrefaB0PxGQJnfyWN3kvEDGM3mIB5M/gQLmitZf7A9FmLeaqxD3L1CXpm3VKQ==}
@@ -1744,6 +1765,11 @@ packages:
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: false
+
+  /negotiator@0.6.3:
+    resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
+    engines: {node: '>= 0.6'}
     dev: false
 
   /next@13.4.19(react-dom@18.2.0)(react@18.2.0):
