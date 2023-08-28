@@ -1,4 +1,4 @@
-import { fetchGiftCards } from "@/app/apis/apis";
+import { fetchGiftCards } from "@/apis/apis";
 import Link from "next/link";
 
 export default async function GiftCardPage({

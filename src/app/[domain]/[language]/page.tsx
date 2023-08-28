@@ -1,4 +1,4 @@
-import { fetchBootstrap } from "../../apis/apis";
+import { fetchBootstrap } from "@/apis/apis";
 
 export default async function DomainPage({
   params,

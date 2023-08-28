@@ -55,15 +55,15 @@ export default async function middleware(request: NextRequest) {
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
-    // return NextResponse.redirect(
-    //   new URL(
-    //     `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-    //     request.url
-    //   )
-    // );
+    return NextResponse.redirect(
+      new URL(
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        request.url
+      )
+    );
   }
   // default language
-  const newUrl = new URL(`/${hostname}/en-US${pathname}`, request.url);
+  const newUrl = new URL(`/${hostname}${pathname}`, request.url);
   console.log("newUrl", newUrl.toString());
   // rewrite everything else to `/[domain]/[path] dynamic route
   return NextResponse.rewrite(newUrl);

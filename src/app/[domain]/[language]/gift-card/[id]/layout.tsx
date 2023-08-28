@@ -1,4 +1,4 @@
-import { fetchGiftCards } from "@/app/apis/apis";
+import { fetchGiftCards } from "@/apis/apis";
 
 export async function generateStaticParams({
   params,

@@ -1,4 +1,4 @@
-import { fetchGiftCardById } from "@/app/apis/apis";
+import { fetchGiftCardById } from "@/apis/apis";
 
 export default async function GiftCardDetailPage({
   params,
