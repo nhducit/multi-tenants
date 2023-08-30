@@ -27,6 +27,6 @@ I would recommend using product mode to run the app. It will help you inspect th
 pnpm install && pnpm build && pnpm start
 ```
 
-- Inspect the SSG output by opening the .next/server/app folder. You should see the below structure
+- Inspect the ISG output by opening the .next/server/app folder. You should see the below structure
 
 ![image](readme-assets/ssg-output.jpg)
