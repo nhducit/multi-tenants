@@ -1,6 +1,6 @@
 # Multi-tenant multi-language Next.js app
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+A Next.js 13 appDir application that supports multi-tenant and multi-language and uses ISR to generate static pages.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ Open one of these URLs with your browser to see the result.
 
 ## Inspect ISR output
 
-I would recommend using product mode to run the app. It will help you inspect the SSG output easier.
+I would recommend using product mode to run the app. It will help you inspect the SSG output more easily.
 
 - Start the app in the production mode
 
@@ -29,4 +29,4 @@ pnpm install && pnpm build && pnpm start
 
 - Inspect the ISR output by opening the .next/server/app folder. You should see the below structure
 
-![image](readme-assets/ssg-output.jpg)
+![image](readme-assets/isr-output.jpg)
