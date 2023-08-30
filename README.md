@@ -17,7 +17,7 @@ Open one of these URLs with your browser to see the result.
 - [http://abcrewards.localhost:3000](http://abcrewards.localhost:3000)
 - [http://dbsrewards.localhost:3000](http://dbsrewards.localhost:3000)
 
-## Inspect SSG output
+## Inspect ISG output
 
 I would recommend using product mode to run the app. It will help you inspect the SSG output easier.
 
