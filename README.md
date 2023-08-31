@@ -7,6 +7,7 @@ A Next.js 13 appDir application that supports multi-tenant and multi-language an
 First, run the development server:
 
 ```bash
+cp .env.local.example .env.local
 pnpm install && pnpm dev
 # or production mode
 pnpm install && pnpm build && pnpm start
