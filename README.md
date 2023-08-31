@@ -19,14 +19,16 @@ Open one of these URLs with your browser to see the result.
 
 ## Inspect ISR output
 
-I would recommend using product mode to run the app. It will help you inspect the SSG output more easily.
+I would recommend using product mode to run the app. It will help you inspect the ISR output more easily.
 
 - Start the app in the production mode
 
 ```bash
 pnpm install && pnpm build && pnpm start
 ```
-
+- Open one of these URLs with your browser to see the result.
+  - [http://abcrewards.localhost:3000](http://abcrewards.localhost:3000)
+  - [http://dbsrewards.localhost:3000](http://dbsrewards.localhost:3000)
 - Inspect the ISR output by opening the .next/server/app folder. You should see the below structure
 
 ![image](readme-assets/isr-output.jpg)
