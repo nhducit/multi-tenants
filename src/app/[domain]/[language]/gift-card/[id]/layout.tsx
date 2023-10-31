@@ -11,9 +11,7 @@ export async function generateStaticParams({
   });
   return giftCards.data.map((giftCard: any) => {
     return {
-      params: {
-        id: giftCard.id,
-      },
+      id: giftCard.id,
     };
   });
 }

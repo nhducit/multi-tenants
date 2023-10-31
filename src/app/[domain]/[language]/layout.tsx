@@ -13,7 +13,11 @@ async function getSupportedLanguages(domain: string) {
 export async function generateStaticParams(options: {
   params: { domain: string };
 }) {
-  return getSupportedLanguages(options.params.domain);
+  return (await getSupportedLanguages(options.params.domain)).map(
+    (language) => {
+      return { language };
+    }
+  );
 }
 
 // This is the app root layout
