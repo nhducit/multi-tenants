@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    incrementalCacheHandlerPath: require.resolve("./cache-handler.js"),
+    // incrementalCacheHandlerPath: require.resolve("./cache-handler.js"),
   },
 };
 
