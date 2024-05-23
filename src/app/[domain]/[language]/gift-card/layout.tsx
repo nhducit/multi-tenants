@@ -2,18 +2,18 @@
 // but we still need to define generateStaticParams function return [] array
 // otherwise, the gift-card/[id] page's generateStaticParams function will not received the domain params
 export async function generateStaticParams(options: {
-  params: { domain: string };
+	params: { domain: string };
 }) {
-  console.log("gc listing generateStaticParams", options);
-  return [];
+	console.log("gc listing generateStaticParams", options);
+	return [];
 }
 
 export const dynamicParams = true;
-export const revalidate = 10
+export const revalidate = 10;
 export default function GiftCardLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return children;
+	return children;
 }

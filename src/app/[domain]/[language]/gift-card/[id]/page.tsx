@@ -1,19 +1,19 @@
 import { fetchGiftCardById } from "@/apis/apis";
 
 export default async function GiftCardDetailPage({
-  params,
+	params,
 }: {
-  params: { domain: string; id: string };
+	params: { domain: string; id: string };
 }) {
-  const data = await fetchGiftCardById({
-    domain: params.domain,
-    id: params.id,
-  });
+	const data = await fetchGiftCardById({
+		domain: params.domain,
+		id: params.id,
+	});
 
-  return (
-    <div>
-      GiftCardDetailPage
-      <div>{JSON.stringify(data, null, 2)}</div>
-    </div>
-  );
+	return (
+		<div>
+			GiftCardDetailPage
+			<div>{JSON.stringify(data, null, 2)}</div>
+		</div>
+	);
 }

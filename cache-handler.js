@@ -9,9 +9,9 @@
 
 const cache = new Map();
 console.log(
-  "env =================== ",
-  process.env.NODE_ENV,
-  process.env.APP_ENV
+	"env =================== ",
+	process.env.NODE_ENV,
+	process.env.APP_ENV,
 );
 // // Declare a route
 // fastify.get("/", function (request, reply) {
@@ -28,22 +28,22 @@ console.log(
 // });
 
 module.exports = class CacheHandler {
-  constructor(options) {
-    console.log("CacheHandler options");
-    this.options = options;
-    this.cache = {};
-  }
+	constructor(options) {
+		console.log("CacheHandler options");
+		this.options = options;
+		this.cache = {};
+	}
 
-  async get(key) {
-    console.log("read from cache", key);
-    return cache.get(key);
-  }
+	async get(key) {
+		console.log("read from cache", key);
+		return cache.get(key);
+	}
 
-  async set(key, data) {
-    console.log("write to cache", key);
-    cache.set(key, {
-      value: data,
-      lastModified: Date.now(),
-    });
-  }
+	async set(key, data) {
+		console.log("write to cache", key);
+		cache.set(key, {
+			value: data,
+			lastModified: Date.now(),
+		});
+	}
 };
