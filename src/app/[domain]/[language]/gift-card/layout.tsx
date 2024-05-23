@@ -9,6 +9,7 @@ export async function generateStaticParams(options: {
 }
 
 export const dynamicParams = true;
+export const revalidate = 10
 export default function GiftCardLayout({
   children,
 }: {
