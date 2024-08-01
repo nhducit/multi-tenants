@@ -16,7 +16,7 @@ export async function generateStaticParams({
 	});
 }
 export const dynamicParams = true;
-export const revalidate = 30;
+export const revalidate = 100;
 export default function GiftCardLayout({
 	children,
 }: {

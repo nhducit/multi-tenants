@@ -34,16 +34,16 @@ dependencies:
     version: 0.6.3
   next:
     specifier: 15.0.0-rc.0
-    version: 15.0.0-rc.0(react-dom@19.0.0-rc-f994737d14-20240522)(react@19.0.0-rc-f994737d14-20240522)
+    version: 15.0.0-rc.0(react-dom@19.0.0-rc-a7d1240c-20240731)(react@19.0.0-rc-a7d1240c-20240731)
   postcss:
     specifier: 8.4.38
     version: 8.4.38
   react:
-    specifier: 19.0.0-rc-f994737d14-20240522
-    version: 19.0.0-rc-f994737d14-20240522
+    specifier: 19.0.0-rc-a7d1240c-20240731
+    version: 19.0.0-rc-a7d1240c-20240731
   react-dom:
-    specifier: 19.0.0-rc-f994737d14-20240522
-    version: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
+    specifier: 19.0.0-rc-a7d1240c-20240731
+    version: 19.0.0-rc-a7d1240c-20240731(react@19.0.0-rc-a7d1240c-20240731)
   tailwindcss:
     specifier: 3.4.3
     version: 3.4.3
@@ -1097,6 +1097,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
     dev: false
 
   /color-string@1.9.1:
@@ -2534,7 +2535,7 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /next@15.0.0-rc.0(react-dom@19.0.0-rc-f994737d14-20240522)(react@19.0.0-rc-f994737d14-20240522):
+  /next@15.0.0-rc.0(react-dom@19.0.0-rc-a7d1240c-20240731)(react@19.0.0-rc-a7d1240c-20240731):
     resolution: {integrity: sha512-IWcCvxUSCAuOK5gig4+9yiyt/dLKpIa+WT01Qcx4CBE4TtwJljyTDnCVVn64jDZ4qmSzsaEYXpb4DTI8qbk03A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -2561,9 +2562,9 @@ packages:
       caniuse-lite: 1.0.30001621
       graceful-fs: 4.2.11
       postcss: 8.4.31
-      react: 19.0.0-rc-f994737d14-20240522
-      react-dom: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
-      styled-jsx: 5.1.3(react@19.0.0-rc-f994737d14-20240522)
+      react: 19.0.0-rc-a7d1240c-20240731
+      react-dom: 19.0.0-rc-a7d1240c-20240731(react@19.0.0-rc-a7d1240c-20240731)
+      styled-jsx: 5.1.3(react@19.0.0-rc-a7d1240c-20240731)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.0.0-rc.0
       '@next/swc-darwin-x64': 15.0.0-rc.0
@@ -2927,21 +2928,21 @@ packages:
     resolution: {integrity: sha512-tYC1Q1hgyRuHgloV/YXs2w15unPVh8qfu/qCTfhTYamaw7fyhumKa2yGpdSo87vY32rIclj+4fWYQXUMs9EHvg==}
     dev: false
 
-  /react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522):
-    resolution: {integrity: sha512-J4CsfTSptPKkhaPbaR6n/KohQiHZTrRZ8GL4H8rbAqN/Qpy69g2MIoLBr5/PUX21ye6JxC1ZRWJFna7Xdg1pdA==}
+  /react-dom@19.0.0-rc-a7d1240c-20240731(react@19.0.0-rc-a7d1240c-20240731):
+    resolution: {integrity: sha512-NNXK26qZhw2DE0wWdphAV/zdQW8olRVGr4q/aFn4+BjSsj2qevdB6rUdrJRczUn8w119Jg/+9Z3EfRFfjSOg0w==}
     peerDependencies:
-      react: 19.0.0-rc-f994737d14-20240522
+      react: 19.0.0-rc-a7d1240c-20240731
     dependencies:
-      react: 19.0.0-rc-f994737d14-20240522
-      scheduler: 0.25.0-rc-f994737d14-20240522
+      react: 19.0.0-rc-a7d1240c-20240731
+      scheduler: 0.25.0-rc-a7d1240c-20240731
     dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
-  /react@19.0.0-rc-f994737d14-20240522:
-    resolution: {integrity: sha512-SeU2v5Xy6FotVhKz0pMS2gvYP7HlkF0qgTskj3JzA1vlxcb3dQjxlm9t0ZlJqcgoyI3VFAw7bomuDMdgy1nBuw==}
+  /react@19.0.0-rc-a7d1240c-20240731:
+    resolution: {integrity: sha512-z1O4z4q9hy4DPUOO2E2VOjJwFOKH/hqZOIKldPGY8DLzxW4pH2JiTm5ma51zRqj7WxVt/5yjDIbY3L9kYTAVcg==}
     engines: {node: '>=0.10.0'}
     dev: false
 
@@ -3103,8 +3104,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /scheduler@0.25.0-rc-f994737d14-20240522:
-    resolution: {integrity: sha512-qS+xGFF7AljP2APO2iJe8zESNsK20k25MACz+WGOXPybUsRdi1ssvaoF93im2nSX2q/XT3wKkjdz6RQfbmaxdw==}
+  /scheduler@0.25.0-rc-a7d1240c-20240731:
+    resolution: {integrity: sha512-ci54e3SJGtv7AZJelSo8XLSgnWPIWiZeMYaDQMsf6CLrcjLBbke3Nu+7nwLd36IQ/WDcmp+x7sDfU6ZND236ZA==}
     dev: false
 
   /secure-json-parse@2.7.0:
@@ -3341,7 +3342,7 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /styled-jsx@5.1.3(react@19.0.0-rc-f994737d14-20240522):
+  /styled-jsx@5.1.3(react@19.0.0-rc-a7d1240c-20240731):
     resolution: {integrity: sha512-qLRShOWTE/Mf6Bvl72kFeKBl8N2Eq9WIFfoAuvbtP/6tqlnj1SCjv117n2MIjOPpa1jTorYqLJgsHKy5Y3ziww==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
@@ -3355,7 +3356,7 @@ packages:
         optional: true
     dependencies:
       client-only: 0.0.1
-      react: 19.0.0-rc-f994737d14-20240522
+      react: 19.0.0-rc-a7d1240c-20240731
     dev: false
 
   /sucrase@3.34.0:

@@ -64,8 +64,9 @@ export default async function middleware(request: NextRequest) {
 		);
 	}
 	// default language
-	const newUrl = new URL(`/${hostname}${pathname}`, request.url);
-	// console.log("newUrl", newUrl.toString());
+	const newUrl = new URL(`/${hostname}${pathname}`, 'http://0.0.0.0:3000');
+	console.log("newUrl", request.url);
+	console.log("nexUrl", newUrl.toString());
 	// rewrite everything else to `/[domain]/[path] dynamic route
 	return NextResponse.rewrite(newUrl);
 }

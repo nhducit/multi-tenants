@@ -1,25 +1,25 @@
 import "../globals.css";
 
 export async function generateStaticParams() {
-	return [
-		{
-			domain: "abcrewards.us.kaligo-staging.xyz",
-		},
-		{
-			domain: "dbsrewards.us.kaligo-staging.xyz",
-		},
-	];
+  return [
+    // {
+    //   domain: "abcrewards.us.kaligo-staging.xyz",
+    // },
+    // {
+    //   domain: "dbsrewards.us.kaligo-staging.xyz",
+    // },
+  ];
 }
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
 
 export const dynamicParams = true;
-export const revalidate = 10;
+export const revalidate = 60;
 // do nothing except render children here
 // and set up generateStaticParams for domain params
 export default function DomainLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return children;
+  return children;
 }
