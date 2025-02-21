@@ -1,14 +1,15 @@
 import "../globals.css";
 
 export async function generateStaticParams() {
-	return [
-		{
-			domain: "abcrewards.us.kaligo-staging.xyz",
-		},
-		{
-			domain: "dbsrewards.us.kaligo-staging.xyz",
-		},
-	];
+	// return [
+	// 	{
+	// 		domain: "abcrewards.us.kaligo-staging.xyz",
+	// 	},
+	// 	{
+	// 		domain: "dbsrewards.us.kaligo-staging.xyz",
+	// 	},
+	// ];
+	return []
 }
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
 

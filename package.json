@@ -11,24 +11,25 @@
     "format": "pnpm biome format --write ."
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "0.5.4",
-    "@types/node": "20.12.12",
-    "@types/react": "18.3.2",
-    "@types/react-dom": "18.3.0",
-    "autoprefixer": "10.4.19",
+    "@formatjs/intl-localematcher": "0.6.0",
+    "@types/node": "22.13.4",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "autoprefixer": "10.4.20",
     "eslint": "8.52.0",
-    "eslint-config-next": "15.0.0-rc.0",
-    "fastify": "^4.27.0",
-    "negotiator": "^0.6.3",
-    "next": "15.0.0-rc.0",
+    "eslint-config-next": "15.1.7",
+    "fastify": "^5.2.1",
+    "negotiator": "^1.0.0",
+    "next": "15.2.0-canary.67",
     "postcss": "8.4.38",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "tailwindcss": "3.4.3",
-    "typescript": "5.4.5"
+    "typescript": "5.7.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.7.3",
+    "@biomejs/biome": "1.9.4",
     "@types/negotiator": "^0.6.3"
-  }
+  },
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }

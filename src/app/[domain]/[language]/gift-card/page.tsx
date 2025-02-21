@@ -1,16 +1,17 @@
 import { fetchGiftCards } from "@/apis/apis";
 import Link from "next/link";
 
-export default async function GiftCardPage({
-	params,
-}: {
-	params: { domain: string };
-}) {
-	const giftCards = await fetchGiftCards({
+export default async function GiftCardPage(
+    props: {
+        params: Promise<{ domain: string }>;
+    }
+) {
+    const params = await props.params;
+    const giftCards = await fetchGiftCards({
 		domain: params.domain,
 	});
-	//   console.log("giftCards page", giftCards);
-	return (
+    //   console.log("giftCards page", giftCards);
+    return (
 		<div>
 			<div>gift card page: {params.domain}</div>
 			{giftCards.data.map((giftCard: any) => {
