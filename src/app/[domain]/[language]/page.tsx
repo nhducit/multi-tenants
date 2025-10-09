@@ -32,7 +32,9 @@ export default async function DomainPage({ params }: DomainPageProps) {
 				<section className="relative isolate overflow-hidden bg-slate-900">
 					<div className="absolute inset-0">
 						<img
-							src={banner.image}
+							src={
+								// TODO: use the image from the bootstrap data
+								'https://rc-assets.kaligo-staging.xyz/images-proxy/hyundai/stg/images/partner_config/Hyundai/homepage/20250424/59d00f8f-1cfa-4979-86f0-5fb3cf2bbb8d.png'}
 							alt={banner.alt}
 							className="h-full w-full object-cover"
 							loading="lazy"

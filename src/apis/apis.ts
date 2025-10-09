@@ -1,6 +1,5 @@
 export function fetchBootstrap(hostname: string) {
 	const url = `https://${hostname}/api/bootstrap`;
-	console.log("fetchBootstrap", url);
 
 	return fetch(url, { next: { revalidate: 30 } })
 		.then((res) => res.json())
@@ -12,7 +11,6 @@ export function fetchBootstrap(hostname: string) {
 
 export function fetchGiftCards({ domain }: { domain: string }) {
 	const url = `https://${domain}/api/gift_cards`;
-	console.log("fetchGiftCards", url);
 	return fetch(url, { next: { revalidate: 30 } })
 		.then((res) => res.json())
 		.catch((error) => {

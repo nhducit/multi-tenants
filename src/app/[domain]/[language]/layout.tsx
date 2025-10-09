@@ -75,14 +75,14 @@ export default async function LanguageLayout({
 				<div className="flex min-h-screen flex-col">
 					<header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
 						<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-6">
-							<div>
+							<a href={`/`}>
 								<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
 									{brandTagline}
 								</p>
 								<h1 className="text-3xl font-semibold text-white md:text-4xl">
 									{brandName}
 								</h1>
-							</div>
+							</a>
 							<nav aria-label="Main navigation">
 								<ul className="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-200 md:text-base">
 									{navItems.map((item) => (
