@@ -10,6 +10,9 @@ async function getSupportedLanguages(domain: string) {
 		? ["en-US", "de"]
 		: ["en-US"];
 }
+
+type Awaitable<T> = T | Promise<T>;
+
 export async function generateStaticParams(options: {
 	params: { domain: string };
 }) {
@@ -21,34 +24,37 @@ export async function generateStaticParams(options: {
 }
 
 // This is the app root layout
-export default async function LanguageLayout(props: {
+type LanguageLayoutProps = {
 	children: React.ReactNode;
-	params: Promise<{
+	params: Awaitable<{
 		domain: string;
 		language: string;
 	}>;
-}) {
-	const params = await props.params;
+};
 
-	const { children } = props;
+export default async function LanguageLayout({
+	children,
+	params,
+}: LanguageLayoutProps) {
+	const { domain, language } = await params;
 
-	const supportedLanguages = await getSupportedLanguages(params.domain);
-	if (!supportedLanguages.includes(params.language)) {
+	const supportedLanguages = await getSupportedLanguages(domain);
+	if (!supportedLanguages.includes(language)) {
 		redirect("/");
 	}
 	return (
-		<html lang={params.language}>
+		<html lang={language}>
 			<body className={inter.className}>
 				<div className="h-[60px] bg-gray-800 flex items-center">
 					<div className="flex items-center ml-8">
 						<Link
-							href={`/${params.language}`}
+							href={`/${language}`}
 							className="h-12 w-12 text-blue-500 flex justify-center items-center bg-red-300"
 						>
 							Logo
 						</Link>
 						<div className="ml-4 text-blue-500">
-							{params.domain} - {params.language}
+							{domain} - {language}
 						</div>
 					</div>
 					<div className="p-4 flex gap-3">
@@ -61,10 +67,10 @@ export default async function LanguageLayout(props: {
 						})}
 					</div>
 					<div className="p-4">
-						<Link href={`/${params.language}/gift-card`}>Gift Cards</Link>
+						<Link href={`/${language}/gift-card`}>Gift Cards</Link>
 					</div>
 				</div>
-				<div className="m-4">{children}</div>
+				<div className="">{children}</div>
 			</body>
 		</html>
 	);
