@@ -10,7 +10,6 @@ export function fetchBootstrap(hostname: string) {
 }
 
 export function fetchGiftCards({ domain }: { domain: string }) {
-	debugger
 	const url = `https://${domain}/api/gift_cards`;
 	const requestInit: RequestInit & { next?: { revalidate: number } } = {
 		headers: { 'x-response-format': 'custom' }
@@ -26,6 +25,9 @@ export function fetchGiftCards({ domain }: { domain: string }) {
 		.catch((error) => {
 			console.error("Error fetching gift_cards xxx data", url, error);
 			throw error;
+		}).finally(() => {
+			// debugger
+			console.log("fetchGiftCards finally", url);
 		});
 }
 

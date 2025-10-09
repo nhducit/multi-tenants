@@ -5,6 +5,7 @@ export type GiftCardSummary = {
 	id: string | null;
 	name: string;
 	image: string;
+	imageUrls: string[];
 	priceRange: string;
 	description: string;
 	badge?: string;
@@ -51,6 +52,7 @@ export function normalizeGiftCards(payload: unknown): GiftCardSummary[] {
 
 	return rawList.map((item, index) => {
 		const id = extractId(item, index);
+		const imageUrls = resolveGiftCardImages(item);
 		return {
 			id,
 			name: safeText(
@@ -59,13 +61,14 @@ export function normalizeGiftCards(payload: unknown): GiftCardSummary[] {
 					(item?.brand?.name as string),
 				"Gift Card",
 			),
-			image: resolveGiftCardImage(item),
+			image: imageUrls[0] ?? DEFAULT_GIFT_CARD_IMAGE,
+			imageUrls,
 			priceRange: resolvePriceRange(item),
 			description: resolveGiftCardDescription(item),
 			badge: optionalText(
 				(item?.badge as string) ??
 					(item?.promotion?.label as string) ??
-					(item?.highlight as string),
+				(item?.highlight as string),
 			),
 			categories: resolveCategories(item),
 		};
@@ -132,7 +135,7 @@ function extractId(item: any, index: number): string | null {
 	return null;
 }
 
-function resolveGiftCardImage(item: any): string {
+function resolveGiftCardImages(item: any): string[] {
 	const candidates: unknown[] = [
 		item?.image,
 		item?.image_url,
@@ -152,13 +155,50 @@ function resolveGiftCardImage(item: any): string {
 		item?.assets?.default?.url,
 	];
 
-	for (const candidate of candidates) {
-		if (typeof candidate === "string" && candidate.trim().length > 0) {
-			return candidate;
+	const images: string[] = [];
+
+	candidates.forEach((candidate) => {
+		if (typeof candidate === "string") {
+			const url = candidate.trim();
+			if (url.length > 0) {
+				images.push(url);
+			}
+		} else if (Array.isArray(candidate)) {
+			candidate.forEach((value) => {
+				if (typeof value === "string" && value.trim().length > 0) {
+					images.push(value.trim());
+				} else if (value && typeof value === "object") {
+					const nested =
+						"url" in value
+							? (value as { url?: string }).url
+							: "src" in value
+							? (value as { src?: string }).src
+							: undefined;
+					if (typeof nested === "string" && nested.trim().length > 0) {
+						images.push(nested.trim());
+					}
+				}
+			});
+		} else if (candidate && typeof candidate === "object") {
+			const nested =
+				"url" in candidate
+					? (candidate as { url?: string }).url
+					: "src" in candidate
+					? (candidate as { src?: string }).src
+					: undefined;
+			if (typeof nested === "string" && nested.trim().length > 0) {
+				images.push(nested.trim());
+			}
 		}
+	});
+
+	const unique = Array.from(new Set(images));
+
+	if (unique.length === 0) {
+		return [DEFAULT_GIFT_CARD_IMAGE];
 	}
 
-	return DEFAULT_GIFT_CARD_IMAGE;
+	return unique;
 }
 
 function resolvePriceRange(item: any): string {
@@ -344,11 +384,11 @@ function formatCurrency(value: number, currency: string): string {
 function resolveGiftCardDescription(item: any): string {
 	return safeText(
 		item?.short_description ??
-			item?.subtitle ??
-			item?.tagline ??
-			item?.description ??
-			item?.brand?.description ??
-			item?.meta?.summary,
+		item?.subtitle ??
+		item?.tagline ??
+		item?.description ??
+		item?.brand?.description ??
+		item?.meta?.summary,
 		"Discover exclusive rewards handpicked for your members.",
 	);
 }

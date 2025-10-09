@@ -4,7 +4,7 @@
 export async function generateStaticParams(options: {
 	params: { domain: string };
 }) {
-	console.log("gc listing generateStaticParams", options);
+	// console.log("gc listing generateStaticParams", options);
 	return [];
 }
 

@@ -21,6 +21,8 @@ export function ReactQueryProvider({ children }: ReactQueryProviderProps) {
 			}),
 	);
 
+	console.log("ReactQueryProvider", client);
+
 	return (
 		<QueryClientProvider client={client}>
 			{children}

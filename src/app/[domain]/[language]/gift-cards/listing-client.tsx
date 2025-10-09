@@ -261,7 +261,7 @@ function renderListingContent({
 						<Card className="overflow-hidden border-slate-800 bg-slate-900/70 transition duration-300 hover:-translate-y-1 hover:border-sky-500/60 hover:shadow-xl">
 							<div className="relative h-44 w-full overflow-hidden bg-slate-800">
 								<img
-									src={giftCard.image || DEFAULT_GIFT_CARD_IMAGE}
+									src={giftCard.imageUrls[0] || DEFAULT_GIFT_CARD_IMAGE}
 									alt={giftCard.name}
 									className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
 									loading="lazy"
