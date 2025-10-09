@@ -31,7 +31,7 @@ export function LanguageSwitcherSelect({
 		}
 
 		startTransition(() => {
-			router.push(`/${encodeURIComponent(domain)}/${nextCode}`);
+			router.push(`/${nextCode}`);
 		});
 	};
 

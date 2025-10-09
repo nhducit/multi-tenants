@@ -1,6 +1,6 @@
 // GC listing page doesn't need any static params
 // but we still need to define generateStaticParams function return [] array
-// otherwise, the gift-card/[id] page's generateStaticParams function will not received the domain params
+// otherwise, the gift-cards/[id] page's generateStaticParams function will not received the domain params
 export async function generateStaticParams(options: {
 	params: { domain: string };
 }) {

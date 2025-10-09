@@ -15,7 +15,7 @@ export default async function GiftCardPage(props: {
 			{giftCards.data.map((giftCard: any) => {
 				return (
 					<div key={giftCard.id}>
-						<Link href={`gift-card/${giftCard.id}`}>{giftCard.id}</Link>
+						<Link href={`/gift-cards/${giftCard.id}`}>{giftCard.id}</Link>
 					</div>
 				);
 			})}

@@ -1,4 +1,5 @@
 import { fetchBootstrap } from "@/apis/apis";
+import { normalizeLanguageOptions, normalizeNavItems, safeText } from "@/app/utils/utils";
 import { LanguageSwitcherSelect } from "@/components/language-switcher-select";
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -42,7 +43,6 @@ export default async function LanguageLayout({
 }: LanguageLayoutProps) {
 	const { domain: rawDomain, language } = await params;
 	const domain = decodeURIComponent(rawDomain);
-	const encodedDomain = encodeURIComponent(domain);
 
 	const supportedLanguageCodes = await getSupportedLanguages(domain);
 	const supportedLanguagesLabel = supportedLanguageCodes.join(", ");
@@ -53,8 +53,8 @@ export default async function LanguageLayout({
 	const bootstrapData = (await fetchBootstrap(domain)) as BootstrapData;
 	const brandName = safeText(
 		bootstrapData?.brand?.name ??
-			bootstrapData?.brandName ??
-			bootstrapData?.companyName,
+		bootstrapData?.brandName ??
+		bootstrapData?.companyName,
 		domain,
 	);
 
@@ -63,46 +63,40 @@ export default async function LanguageLayout({
 		supportedLanguageCodes,
 		language,
 	);
+	const brandTagline = safeText(
+		bootstrapData?.brand?.tagline ?? bootstrapData?.tagline,
+		"Rewarding journeys start here"
+	);
+	const navItems = normalizeNavItems(bootstrapData);
 
 	return (
 		<html lang={language}>
 			<body className={`${inter.className} bg-slate-950 text-slate-100`}>
 				<div className="flex min-h-screen flex-col">
-					<header className="bg-gray-800">
-						<div className="mx-auto flex h-[60px] max-w-6xl items-center justify-between gap-6 px-6">
-							<div className="flex items-center gap-4">
-								<Link
-									href={`/${encodedDomain}/${language}`}
-									className="flex h-12 w-12 items-center justify-center bg-red-300 text-blue-500"
-								>
-									Logo
-								</Link>
-								<div className="text-blue-500">
-									{domain} - {language}
-									<div className="text-xs text-blue-300">
-										Supported languages: {supportedLanguagesLabel}
-									</div>
-								</div>
+					<header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
+						<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-6">
+							<div>
+								<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+									{brandTagline}
+								</p>
+								<h1 className="text-3xl font-semibold text-white md:text-4xl">
+									{brandName}
+								</h1>
 							</div>
-							<div className="flex items-center gap-6 text-sm text-blue-100">
-								<nav className="flex items-center gap-3">
-									{supportedLanguageCodes.map((locale) => (
-										<Link
-											key={locale}
-											href={`/${encodedDomain}/${locale}`}
-											className="transition hover:text-white"
-										>
-											{locale}
-										</Link>
+							<nav aria-label="Main navigation">
+								<ul className="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-200 md:text-base">
+									{navItems.map((item) => (
+										<li key={`${item.href}-${item.label}`}>
+											<Link
+												href={item.href}
+												className="transition hover:text-white hover:underline"
+											>
+												{item.label}
+											</Link>
+										</li>
 									))}
-								</nav>
-								<Link
-									href={`/${encodedDomain}/${language}/gift-card`}
-									className="transition hover:text-white"
-								>
-									Gift Cards
-								</Link>
-							</div>
+								</ul>
+							</nav>
 						</div>
 					</header>
 					<main className="flex-1">{children}</main>
@@ -138,100 +132,3 @@ export default async function LanguageLayout({
 	);
 }
 
-function safeText(value: unknown, fallback: string): string {
-	return typeof value === "string" && value.trim().length > 0
-		? value
-		: fallback;
-}
-
-function normalizeLanguageOptions(
-	bootstrap: BootstrapData,
-	supportedCodes: string[],
-	currentLanguage: string,
-): { code: string; label: string }[] {
-	const seen = new Set<string>();
-	const options: { code: string; label: string }[] = [];
-
-	const candidate =
-		bootstrap?.languages ??
-		bootstrap?.supportedLanguages ??
-		bootstrap?.availableLanguages ??
-		bootstrap?.i18n?.languages;
-
-	if (Array.isArray(candidate)) {
-		candidate.forEach((entry) => {
-			if (typeof entry === "string") {
-				pushOption(entry, entry);
-			} else if (entry && typeof entry === "object") {
-				const langObj = entry as {
-					code?: string;
-					label?: string;
-					name?: string;
-				};
-				if (langObj.code) {
-					pushOption(
-						langObj.code,
-						langObj.label ?? langObj.name ?? langObj.code,
-					);
-				}
-			}
-		});
-	} else if (candidate && typeof candidate === "object") {
-		Object.entries(candidate as Record<string, unknown>).forEach(
-			([code, value]) => {
-				const label =
-					typeof value === "string"
-						? value
-						: typeof value === "object" &&
-						  value !== null &&
-						  "label" in value
-						? (value as { label?: string }).label
-						: code;
-				pushOption(code, label);
-			},
-		);
-	}
-
-	supportedCodes.forEach((code) => {
-		pushOption(code, code);
-	});
-
-	if (!seen.has(currentLanguage)) {
-		pushOption(currentLanguage, currentLanguage);
-	}
-
-	if (options.length === 0) {
-		return DEFAULT_LANGUAGE_OPTIONS.map((option) => ({
-			code: option.code,
-			label: option.label,
-		}));
-	}
-
-	return options;
-
-	function pushOption(code: string | undefined, label?: string) {
-		const normalizedCode = safeText(code, "");
-		if (!normalizedCode || seen.has(normalizedCode)) {
-			return;
-		}
-		const formattedLabel = safeText(label, labelFromCode(normalizedCode));
-		options.push({
-			code: normalizedCode,
-			label: formattedLabel,
-		});
-		seen.add(normalizedCode);
-	}
-}
-
-function labelFromCode(code: string): string {
-	if (code.length <= 3 || code.includes("-")) {
-		return code.toUpperCase();
-	}
-	return code;
-}
-
-const DEFAULT_LANGUAGE_OPTIONS = [
-	{ code: "en", label: "English" },
-	{ code: "fr", label: "Français" },
-	{ code: "de", label: "Deutsch" },
-];
