@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 	// 		domain: "dbsrewards.us.kaligo-staging.xyz",
 	// 	},
 	// ];
-	return []
+	return [];
 }
 // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
 

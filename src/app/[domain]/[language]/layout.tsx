@@ -21,20 +21,16 @@ export async function generateStaticParams(options: {
 }
 
 // This is the app root layout
-export default async function LanguageLayout(
-	props: {
-		children: React.ReactNode;
-		params: Promise<{
-			domain: string;
-			language: string;
-		}>;
-	}
-) {
+export default async function LanguageLayout(props: {
+	children: React.ReactNode;
+	params: Promise<{
+		domain: string;
+		language: string;
+	}>;
+}) {
 	const params = await props.params;
 
-	const {
-		children
-	} = props;
+	const { children } = props;
 
 	const supportedLanguages = await getSupportedLanguages(params.domain);
 	if (!supportedLanguages.includes(params.language)) {

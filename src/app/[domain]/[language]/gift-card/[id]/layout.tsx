@@ -12,7 +12,7 @@ export async function generateStaticParams(hehe: {
 	// 		id: giftCard.id,
 	// 	};
 	// });
-	return []
+	return [];
 }
 export const dynamicParams = true;
 export const revalidate = 30;
