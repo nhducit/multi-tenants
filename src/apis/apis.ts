@@ -37,7 +37,7 @@ export function fetchGiftCardById({
 	id: string;
 }) {
 	const url = `https://${domain}/api/gift_cards/${id}`;
-	console.log("fetchGiftCardById", url);
+	// console.log("fetchGiftCardById", url);
 
 	return fetch(url, { next: { revalidate: 30 } })
 		.then((res) => res.json())

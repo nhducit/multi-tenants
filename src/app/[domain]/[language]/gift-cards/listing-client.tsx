@@ -66,8 +66,6 @@ export function GiftCardsListingClient({
 		[query.data],
 	);
 
-	console.log('giftCards', giftCards, query.data)
-
 
 	const categories = useMemo(
 		() => ["All", ...deriveCategories(giftCards)],
