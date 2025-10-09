@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { fetchBootstrap } from "@/apis/apis";
+import Link from "next/link";
 
 type BootstrapData = { [key: string]: any };
 
@@ -17,11 +17,6 @@ type CarouselItem = {
 	href: string;
 };
 
-type LanguageOption = {
-	code: string;
-	label: string;
-};
-
 type DomainPageProps = {
 	params: Awaitable<{ domain: string; language: string }>;
 };
@@ -29,7 +24,6 @@ type DomainPageProps = {
 export default async function DomainPage({ params }: DomainPageProps) {
 	const resolvedParams = await params;
 	const domain = decodeURIComponent(resolvedParams.domain);
-	const domainParam = resolvedParams.domain;
 	const data = (await fetchBootstrap(domain)) as BootstrapData;
 
 	const brandName = safeText(
@@ -44,7 +38,6 @@ export default async function DomainPage({ params }: DomainPageProps) {
 	const navItems = normalizeNavItems(data);
 	const banner = normalizeBanner(data, brandName, brandTagline);
 	const carouselItems = normalizeCarouselItems(data);
-	const languages = normalizeLanguages(data, resolvedParams.language);
 
 	return (
 		<div className="flex min-h-screen flex-col bg-slate-950 text-slate-100">
@@ -115,41 +108,6 @@ export default async function DomainPage({ params }: DomainPageProps) {
 					</div>
 				</section>
 
-				<section
-					className="border-y border-slate-800 bg-slate-900"
-					aria-label="Language switcher"
-				>
-					<div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-6 px-6 py-8">
-						<div>
-							<h3 className="text-lg font-semibold text-white">
-								Choose your language
-							</h3>
-							<p className="text-sm text-slate-300">
-								Stay in your comfort zone while exploring rewards.
-							</p>
-						</div>
-						<div className="flex flex-wrap gap-2 text-sm font-medium">
-							{languages.map((languageOption) => {
-								const isActive = languageOption.code === resolvedParams.language;
-								return (
-									<Link
-										key={languageOption.code}
-										href={`/${domainParam}/${languageOption.code}`}
-										className={`rounded-full border px-4 py-2 transition ${
-											isActive
-												? "border-sky-400 bg-sky-500/20 text-sky-200"
-												: "border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-200"
-										}`}
-										prefetch={false}
-									>
-										{languageOption.label}
-									</Link>
-								);
-							})}
-						</div>
-					</div>
-				</section>
-
 				<section className="bg-slate-950" aria-label="Featured highlights">
 					<div className="mx-auto max-w-6xl px-6 py-16">
 						<div className="mb-10 flex flex-wrap items-end justify-between gap-4">
@@ -208,22 +166,6 @@ export default async function DomainPage({ params }: DomainPageProps) {
 				</section>
 			</main>
 
-			<footer className="border-t border-slate-800 bg-slate-950">
-				<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-8 text-sm text-slate-400">
-					<p>© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
-					<div className="flex flex-wrap items-center gap-4">
-						<Link href="#privacy" className="hover:text-slate-200">
-							Privacy
-						</Link>
-						<Link href="#terms" className="hover:text-slate-200">
-							Terms
-						</Link>
-						<Link href="#support" className="hover:text-slate-200">
-							Support
-						</Link>
-					</div>
-				</div>
-			</footer>
 		</div>
 	);
 }
@@ -413,68 +355,6 @@ function normalizeCarouselItems(bootstrap: BootstrapData): CarouselItem[] {
 		: [];
 
 	return items.length > 0 ? items : fallback;
-}
-
-function normalizeLanguages(
-	bootstrap: BootstrapData,
-	currentLanguage: string
-): LanguageOption[] {
-	const fallback: LanguageOption[] = [
-		{ code: "en", label: "English" },
-		{ code: "fr", label: "Français" },
-		{ code: "de", label: "Deutsch" },
-	];
-
-	const candidate =
-		bootstrap?.languages ??
-		bootstrap?.supportedLanguages ??
-		bootstrap?.availableLanguages ??
-		bootstrap?.i18n?.languages;
-
-	const languages: LanguageOption[] = [];
-
-	if (Array.isArray(candidate)) {
-		candidate.forEach((lang) => {
-			if (typeof lang === "string") {
-				languages.push({
-					code: lang,
-					label: lang.length === 2 ? lang.toUpperCase() : lang,
-				});
-			} else if (lang && typeof lang === "object") {
-				const langObj = lang as { code?: string; label?: string; name?: string };
-				if (langObj.code) {
-					languages.push({
-						code: langObj.code,
-						label: safeText(langObj.label ?? langObj.name, langObj.code),
-					});
-				}
-			}
-		});
-	} else if (candidate && typeof candidate === "object") {
-		Object.entries(candidate as Record<string, unknown>).forEach(
-			([code, value]) => {
-				const label =
-					typeof value === "string"
-						? value
-						: typeof value === "object" && value !== null && "label" in value
-							? (value as { label?: string }).label
-							: code;
-				languages.push({ code, label: safeText(label, code) });
-			}
-		);
-	}
-
-	if (!languages.some((lang) => lang.code === currentLanguage)) {
-		languages.unshift({
-			code: currentLanguage,
-			label:
-				currentLanguage.length === 2
-					? currentLanguage.toUpperCase()
-					: currentLanguage,
-		});
-	}
-
-	return languages.length > 0 ? languages : fallback;
 }
 
 function deriveImage(source: {
