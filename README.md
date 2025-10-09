@@ -33,3 +33,11 @@ pnpm install && pnpm build && pnpm start
 - Inspect the ISR output by opening the .next/server/app folder. You should see the below structure
 
 ![image](readme-assets/isr-output.jpg)
+
+## Benchmark
+I benchmarked the app with vegeta to test the performance of the app.
+
+```bash
+echo "GET http://abcrewards.localhost:3000/en-US" | vegeta attack -duration=1s -rate=70 -insecure | vegeta report
+```
+
