@@ -1,6 +1,7 @@
 import { fetchBootstrap } from "@/apis/apis";
 import { normalizeLanguageOptions, normalizeNavItems, safeText } from "@/app/utils/utils";
 import { LanguageSwitcherSelect } from "@/components/language-switcher-select";
+import { ReactQueryProvider } from "@/components/providers/react-query-provider";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -72,63 +73,64 @@ export default async function LanguageLayout({
 	return (
 		<html lang={language}>
 			<body className={`${inter.className} bg-slate-950 text-slate-100`}>
-				<div className="flex min-h-screen flex-col">
-					<header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
-						<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-6">
-							<a href={`/`}>
-								<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
-									{brandTagline}
-								</p>
-								<h1 className="text-3xl font-semibold text-white md:text-4xl">
-									{brandName}
-								</h1>
-							</a>
-							<nav aria-label="Main navigation">
-								<ul className="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-200 md:text-base">
-									{navItems.map((item) => (
-										<li key={`${item.href}-${item.label}`}>
-											<Link
-												href={item.href}
-												className="transition hover:text-white hover:underline"
-											>
-												{item.label}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</nav>
-						</div>
-					</header>
-					<main className="flex-1">{children}</main>
-					<footer className="border-t border-slate-800 bg-slate-950">
-						<div className="mx-auto max-w-6xl px-6 py-10 text-sm text-slate-400">
-							<div className="flex flex-wrap items-center justify-between gap-6">
-								<p>
-									© {new Date().getFullYear()} {brandName}. All rights reserved.
-								</p>
-								<LanguageSwitcherSelect
-									options={languageOptions}
-									activeCode={language}
-									domain={domain}
-									className="w-full max-w-xs text-left md:text-right"
-								/>
+				<ReactQueryProvider>
+					<div className="flex min-h-screen flex-col">
+						<header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur">
+							<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-6">
+								<Link href={`/`}>
+									<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+										{brandTagline}
+									</p>
+									<h1 className="text-3xl font-semibold text-white md:text-4xl">
+										{brandName}
+									</h1>
+								</Link>
+								<nav aria-label="Main navigation">
+									<ul className="flex flex-wrap items-center gap-5 text-sm font-medium text-slate-200 md:text-base">
+										{navItems.map((item) => (
+											<li key={`${item.href}-${item.label}`}>
+												<Link
+													href={item.href}
+													className="transition hover:text-white hover:underline"
+												>
+													{item.label}
+												</Link>
+											</li>
+										))}
+									</ul>
+								</nav>
 							</div>
-							<div className="mt-6 flex flex-wrap items-center gap-4">
-								<Link href="#privacy" className="hover:text-slate-200">
-									Privacy
-								</Link>
-								<Link href="#terms" className="hover:text-slate-200">
-									Terms
-								</Link>
-								<Link href="#support" className="hover:text-slate-200">
-									Support
-								</Link>
+						</header>
+						<main className="flex-1">{children}</main>
+						<footer className="border-t border-slate-800 bg-slate-950">
+							<div className="mx-auto max-w-6xl px-6 py-10 text-sm text-slate-400">
+								<div className="flex flex-wrap items-center justify-between gap-6">
+									<p>
+										© {new Date().getFullYear()} {brandName}. All rights reserved.
+									</p>
+									<LanguageSwitcherSelect
+										options={languageOptions}
+										activeCode={language}
+										domain={domain}
+										className="w-full max-w-xs text-left md:text-right"
+									/>
+								</div>
+								<div className="mt-6 flex flex-wrap items-center gap-4">
+									<Link href="#privacy" className="hover:text-slate-200">
+										Privacy
+									</Link>
+									<Link href="#terms" className="hover:text-slate-200">
+										Terms
+									</Link>
+									<Link href="#support" className="hover:text-slate-200">
+										Support
+									</Link>
+								</div>
 							</div>
-						</div>
-					</footer>
-				</div>
+						</footer>
+					</div>
+				</ReactQueryProvider>
 			</body>
 		</html>
 	);
 }
-

@@ -10,8 +10,18 @@ export function fetchBootstrap(hostname: string) {
 }
 
 export function fetchGiftCards({ domain }: { domain: string }) {
+	debugger
 	const url = `https://${domain}/api/gift_cards`;
-	return fetch(url, { next: { revalidate: 30 } })
+	const requestInit: RequestInit & { next?: { revalidate: number } } = {
+		headers: { 'x-response-format': 'custom' }
+	};
+	if (typeof window === "undefined") {
+		requestInit.next = { revalidate: 30 };
+	} else {
+		requestInit.cache = "no-store";
+	}
+
+	return fetch(url, requestInit)
 		.then((res) => res.json())
 		.catch((error) => {
 			console.error("Error fetching gift_cards xxx data", url, error);

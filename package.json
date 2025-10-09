@@ -40,6 +40,7 @@
 		"@radix-ui/react-toggle-group": "^1.1.11",
 		"@radix-ui/react-tooltip": "^1.2.8",
 		"@tailwindcss/postcss": "^4.0.0",
+		"@tanstack/react-query": "^5.90.2",
 		"@types/node": "24.7.0",
 		"@types/react": "19.2.2",
 		"@types/react-dom": "19.2.1",
@@ -72,6 +73,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@tanstack/react-query-devtools": "^5.90.2",
 		"@types/negotiator": "^0.6.4"
 	},
 	"packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
